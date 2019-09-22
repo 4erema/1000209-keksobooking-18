@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Черемисин](https://up.htmlacademy.ru/javascript/18/user/1000209).
-* Наставник: `Неизвестно`.
+* Наставник: [Илья Евсеев](https://htmlacademy.ru/profile/id494767).
 
 ---
 
