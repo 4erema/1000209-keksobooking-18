@@ -1,7 +1,6 @@
 'use strict'
 //Моки
 var MASSIVE_LENGTH = 8;
-var MASSIVE = [];
 var PRICE = [10000, 50000, 20000, 30000, 40000];
 var TYPE = ['palace', 'flat', 'house', 'bungalo'];
 var CHECKIN = ['12:00', '13:00', '14:00'];
@@ -9,6 +8,10 @@ var CHEKOUT = ['12:00', '13:00', '14:00'];
 var FEATURES = ['wifi', 'diswasher', 'parking', 'washer', 'elevator', 'contidioner',];
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+var MIN_X = 0;
+var MAX_X = 1200;
+var MIN_Y = 130;
+var MAX_Y = 630;
 // создаем функцию по нахождению случайного числа в пределах от min до max
 var getRandomNumber = function(min, max) {
   var randomNumber = Math.floor(Math.random()(max-min +1) + min);
@@ -28,6 +31,7 @@ var getRandomArr = function(arr){
 
 //Напишите функцию для создания массива из 8 сгенерированных JS объектов. Каждый объект массива ‐ function
 var getMassive = function(){
+  var randomMassive=[];
 
  for(i=0; i<MASSIVE_LENGTH; i++) {
  var Object = {
@@ -44,7 +48,7 @@ var getMassive = function(){
      'title': 'предложение',
      //    "address": строка, адрес предложения. Для простоты пусть пока представляет собой запись вида
      //"{{location.x}}, {{location.y}}", например, "600, 350"
-     'adress': '600, 300',
+     'adress': Location.x + ', ' +Location.y,
 //    "price": число, стоимость
      'price': getRandomElement(PRICE),
 //    "type": строка с одним из четырёх фиксированных значений: palace, flat, house или bungalo
@@ -65,13 +69,20 @@ var getMassive = function(){
 //    "photos": массив строк случайной длины, содержащий адреса фотографий
 //"http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg",
 //"http://o0.github.io/assets/images/tokyo/hotel3.jpg"
-     'photos': getRandomArr(PHOTOS),
-   }
+     'photos': getRandomArr(PHOTOS)
+   },
 //  "location": {
+    'Location': {
 //    "x": случайное число, координата x метки на карте. Значение ограничено размерами блока,
 //в котором перетаскивается метка.
+      'x': getRandomNumber(MIN_X, MAX_X),
 //    "y": случайное число, координата y метки на карте от 130 до 630.
+      'y': getRandomNumber(MIN_Y, MAX_Y)
 //  }
  }
  }
+ randomMassive.push(Object);
 };
+
+var map = document.querySelector('.map');
+ map.classList.remove('map--faded');
